@@ -25,4 +25,5 @@ public interface SaRegionInfoMapper {
 
     int updateByState(@Param("id") int code, @Param("state") int state);
 
+    int test();
 }
