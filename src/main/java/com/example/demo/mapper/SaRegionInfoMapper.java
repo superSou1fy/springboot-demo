@@ -19,7 +19,10 @@ public interface SaRegionInfoMapper {
 
     int updateByPrimaryKey(SaRegionInfo record);
 
-    List<SaRegionInfo> selectData(@Param("code") int code,@Param("state") int state);
+    List<SaRegionInfo> selectData(@Param("code") int code, @Param("state") int state);
 
-    int updateById(@Param("id") int code,@Param("state") int state);
+    int updateById(@Param("id") int code, @Param("state") int state);
+
+    int updateByState(@Param("id") int code, @Param("state") int state);
+
 }
