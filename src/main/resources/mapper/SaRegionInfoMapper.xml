@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SaRegionInfoMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.model.SaRegionInfo">
+        <id column="ID" jdbcType="DECIMAL" property="id"/>
+        <result column="CODE" jdbcType="DECIMAL" property="code"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="PARENTID" jdbcType="DECIMAL" property="parentid"/>
+        <result column="REGIONLEVEL" jdbcType="DECIMAL" property="regionlevel"/>
+        <result column="CREATEDATE" jdbcType="TIMESTAMP" property="createdate"/>
+        <result column="STATE" jdbcType="DECIMAL" property="state"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, CODE, NAME, PARENTID, REGIONLEVEL, CREATEDATE, STATE
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from SA_REGION_INFO
+        where ID = #{id,jdbcType=DECIMAL}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from SA_REGION_INFO
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+    <insert id="insert" parameterType="com.example.demo.model.SaRegionInfo">
+    insert into SA_REGION_INFO (ID, CODE, NAME, 
+      PARENTID, REGIONLEVEL, CREATEDATE, 
+      STATE)
+    values (#{id,jdbcType=DECIMAL}, #{code,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, 
+      #{parentid,jdbcType=DECIMAL}, #{regionlevel,jdbcType=DECIMAL}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=DECIMAL})
+  </insert>
+    <insert id="insertSelective" parameterType="com.example.demo.model.SaRegionInfo">
+        insert into SA_REGION_INFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="code != null">
+                CODE,
+            </if>
+            <if test="name != null">
+                NAME,
+            </if>
+            <if test="parentid != null">
+                PARENTID,
+            </if>
+            <if test="regionlevel != null">
+                REGIONLEVEL,
+            </if>
+            <if test="createdate != null">
+                CREATEDATE,
+            </if>
+            <if test="state != null">
+                STATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=DECIMAL},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=DECIMAL},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="parentid != null">
+                #{parentid,jdbcType=DECIMAL},
+            </if>
+            <if test="regionlevel != null">
+                #{regionlevel,jdbcType=DECIMAL},
+            </if>
+            <if test="createdate != null">
+                #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.SaRegionInfo">
+        update SA_REGION_INFO
+        <set>
+            <if test="code != null">
+                CODE = #{code,jdbcType=DECIMAL},
+            </if>
+            <if test="name != null">
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="parentid != null">
+                PARENTID = #{parentid,jdbcType=DECIMAL},
+            </if>
+            <if test="regionlevel != null">
+                REGIONLEVEL = #{regionlevel,jdbcType=DECIMAL},
+            </if>
+            <if test="createdate != null">
+                CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                STATE = #{state,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.demo.model.SaRegionInfo">
+    update SA_REGION_INFO
+    set CODE = #{code,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=DECIMAL},
+      REGIONLEVEL = #{regionlevel,jdbcType=DECIMAL},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+    <select id="selectData" resultMap="BaseResultMap">
+    select * from SA_REGION_INFO where CODE=#{code} and state=#{state} order by CREATEDATE ASC for update skip locked
+  </select>
+    <update id="updateById">
+        update SA_REGION_INFO set state=#{state} where id=#{id}
+    </update>
+</mapper>
