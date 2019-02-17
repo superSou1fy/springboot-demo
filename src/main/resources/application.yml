@@ -16,7 +16,6 @@ mybatis:
 
 dynamic:
   datasource:
-    config-xml-path: 'classpath*:/sblin/sblin-db-config.xml'
     dbs:
       - url: jdbc:oracle:thin:@192.8.8.105:1521:powerol
         username: POW
@@ -28,3 +27,4 @@ dynamic:
         password: 123456
         driver-class-name: oracle.jdbc.driver.OracleDriver
         db-key: 769
+    config-xml-path: 'classpath*:/sblin/sblin-db-config.xml'
