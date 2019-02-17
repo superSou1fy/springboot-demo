@@ -1,11 +1,30 @@
-spring:
-  datasource:
-    url: jdbc:oracle:thin:@192.8.8.105:1521:powerol
-    username: POW
-    password: 123456
-    driver-class-name: oracle.jdbc.driver.OracleDriver
+#sblin:
+#  datasource:
+#    url: jdbc:oracle:thin:@192.8.8.105:1521:powerol
+#    username: POW
+#    password: 123456
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
 #mvn install:install-file -Dfile=D:\mvn_repo\Oracle\12.1.0.2\ojdbc6-12.1.0.2.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=12.1.0.2 -Dpackaging=jar
 
 
 mybatis:
   mapper-locations: classpath*:/mapper/*.xml
+
+
+
+
+
+dynamic:
+  datasource:
+    config-xml-path: 'classpath*:/sblin/sblin-db-config.xml'
+    dbs:
+      - url: jdbc:oracle:thin:@192.8.8.105:1521:powerol
+        username: POW
+        password: 123456
+        driver-class-name: oracle.jdbc.driver.OracleDriver
+        db-key: 200
+      - url: jdbc:oracle:thin:@192.8.8.105:1521:powerol
+        username: POW
+        password: 123456
+        driver-class-name: oracle.jdbc.driver.OracleDriver
+        db-key: 769
