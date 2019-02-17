@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -37,7 +38,7 @@ public class DynamicDataSourceConfiguration {
 
     @Configuration
     @EnableConfigurationProperties(MutiDataSourceProperties.class)
-    //@ConditionalOnProperty(prefix = "dynamic.datasource", name = "dbs")
+    @ConditionalOnExpression("'${dynamic.datasource.dbs}'.length()>0")
     static class CodedConfiguration {
 
         @Bean
@@ -75,5 +76,6 @@ public class DynamicDataSourceConfiguration {
             dynamicDataSource.setTargetDataSources(targetDts);
             return dynamicDataSource;
         }
+
     }
 }
