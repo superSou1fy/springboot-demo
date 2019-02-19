@@ -2,6 +2,26 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="testBean" scope="singleton" class="com.dyniamic.test.TestBean"></bean>
+
+    <bean id="testBean" class="com.dyniamic.test.TestBean"/>
+
+    <bean id="dataSource.oracle" class="com.zaxxer.hikari.HikariDataSource">
+        <property name="username" value="POW"/>
+        <property name="password" value="123456"/>
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@192.8.8.105:1521:powerol"/>
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+    </bean>
+
+    <bean id="dataSource" primary="true" class="com.dyniamic.ddb.DynamicDataSource">
+        <property name="targetDataSources">
+            <map>
+                <entry key="oracle" value-ref="dataSource.oracle"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 </beans>
 

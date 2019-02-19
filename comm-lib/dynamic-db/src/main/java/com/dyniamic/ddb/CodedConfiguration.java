@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
-@Configuration
 @EnableConfigurationProperties(MutiDataSourceProperties.class)
 @ConditionalOnExpression("'${dynamic.datasource.dbs}'.length()>0")
 public class CodedConfiguration {
